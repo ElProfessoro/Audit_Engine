@@ -57,8 +57,6 @@ export function Screen6FinalQuote({ prospect }: Screen6Props) {
   const continuePkg = PACKAGES.continue;
 
   const totalHT = mainPkg.price;
-  const tva = Math.round(totalHT * 0.2);
-  const totalTTC = totalHT + tva;
 
   return (
     <section className="px-16 py-14 pb-20">

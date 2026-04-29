@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { scan } from "@/lib/scanner";
 
+// Playwright requiert Node.js — cette route est exclue du build Cloudflare Pages
+export const runtime = "nodejs";
+
 const ScanRequestSchema = z.object({
   url: z.string().url("URL invalide"),
 });

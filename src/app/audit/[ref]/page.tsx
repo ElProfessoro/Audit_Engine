@@ -6,6 +6,10 @@ interface AuditPageProps {
   params: Promise<{ ref: string }>;
 }
 
+export function generateStaticParams() {
+  return [{ ref: "2026-X042" }];
+}
+
 export default async function AuditPage({ params }: AuditPageProps) {
   const { ref } = await params;
   const prospect = await loadProspect(ref);

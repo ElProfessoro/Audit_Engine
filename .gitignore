@@ -10,6 +10,10 @@ out/
 build/
 dist/
 
+# Cloudflare Pages build output
+.vercel/
+.wrangler/
+
 # Environment
 .env
 .env*.local

@@ -14,20 +14,23 @@
     "test:scanner": "playwright test tests/scanner",
     "scan": "tsx scripts/scan-cli.ts",
     "scan:batch": "tsx scripts/scan-batch.ts",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "pages:dev": "wrangler pages dev out"
   },
   "dependencies": {
+    "framer-motion": "^11.15.0",
+    "lucide-react": "^0.469.0",
     "next": "^15.1.0",
+    "playwright": "^1.49.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "framer-motion": "^11.15.0",
-    "zustand": "^5.0.2",
     "zod": "^3.24.1",
-    "playwright": "^1.49.1",
-    "lucide-react": "^0.469.0"
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@playwright/test": "^1.49.1",
+    "@tailwindcss/postcss": "^4.2.4",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
@@ -40,7 +43,8 @@
     "tailwindcss": "^4.0.0-beta.7",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vitest": "^2.1.8",
+    "wrangler": "^4.86.0"
   },
   "engines": {
     "node": ">=20.0.0"
