@@ -1,0 +1,260 @@
+{
+  "identity": {
+    "ref": "2026-X042",
+    "name": "RecrutExpert S.A.S.",
+    "initials": "RE",
+    "domain": "recrutexpert.fr",
+    "nafCode": "7810Z",
+    "nafLabel": "Recrutement",
+    "headcount": 85,
+    "region": "Auvergne-Rhône-Alpes",
+    "address": {
+      "street": "42 cours Lafayette",
+      "postalCode": "69003",
+      "city": "Lyon",
+      "country": "France"
+    },
+    "contact": {
+      "name": "Mme Martin",
+      "title": "Directrice"
+    }
+  },
+  "scan": {
+    "domain": "recrutexpert.fr",
+    "scannedAt": "2026-10-14T09:32:01Z",
+    "durationMs": 18432,
+    "cookies": [
+      { "name": "SESSION_ID", "domain": "recrutexpert.fr", "type": "essential", "deposedBeforeConsent": true, "status": "pass" },
+      { "name": "_ga", "domain": ".recrutexpert.fr", "type": "analytics", "deposedBeforeConsent": true, "status": "warning" },
+      { "name": "_fbp", "domain": ".recrutexpert.fr", "type": "advertising", "deposedBeforeConsent": true, "status": "fail" },
+      { "name": "_hjid", "domain": ".hotjar.com", "type": "analytics", "deposedBeforeConsent": true, "status": "fail" }
+    ],
+    "thirdPartyScripts": [
+      { "url": "https://www.googletagmanager.com/gtm.js?id=GTM-XXXXX", "domain": "googletagmanager.com", "category": "tag-manager", "knownTracker": true, "status": "warning" },
+      { "url": "https://connect.facebook.net/en_US/fbevents.js", "domain": "connect.facebook.net", "category": "advertising", "knownTracker": true, "status": "fail" }
+    ],
+    "consentBanner": {
+      "detected": true,
+      "cmp": null,
+      "hasRefuseButton": false,
+      "refuseEqualToAccept": false,
+      "granularConsent": false
+    },
+    "privacyPolicy": {
+      "url": "https://recrutexpert.fr/politique-confidentialite",
+      "elementsFound": {
+        "controllerIdentity": true,
+        "purposes": true,
+        "legalBasis": false,
+        "retention": false,
+        "rights": true,
+        "transfers": false,
+        "dpoMention": false
+      },
+      "score": 43
+    },
+    "forms": [
+      { "path": "/contact", "fields": ["name", "email", "phone", "message"], "hasConsentCheckbox": false, "hasPolicyLink": false },
+      { "path": "/candidature", "fields": ["name", "email", "phone", "cv"], "hasConsentCheckbox": false, "hasPolicyLink": true }
+    ],
+    "anomalies": [
+      {
+        "id": "anom-1",
+        "severity": "critical",
+        "title": "Cookies publicitaires déposés avant consentement",
+        "legalRef": "Article 82 · Loi Informatique et Libertés",
+        "description": "Le scan détecte 4 cookies publicitaires (Meta Pixel, Hotjar, Google Tag Manager) qui sont déposés sur le navigateur du visiteur avant que celui-ci n'ait interagi avec la bannière de consentement. La CNIL considère cela comme un manquement direct.",
+        "position": { "x": 75, "y": 17 },
+        "sanctionRef": {
+          "name": "SHEIN",
+          "amount": "150 M€",
+          "date": "juillet 2025",
+          "reason": "cookies déposés sans consentement et durées de conservation excessives"
+        },
+        "exposure": {
+          "label": "Procédure simplifiée CNIL",
+          "range": "15 000 — 20 000 €"
+        }
+      },
+      {
+        "id": "anom-2",
+        "severity": "critical",
+        "title": "Bannière cookies sans bouton 'Tout refuser'",
+        "legalRef": "Recommandation CNIL · 17 septembre 2020",
+        "description": "La bannière de consentement présente un bouton 'Accepter' mais aucun bouton 'Tout refuser' au même niveau de visibilité. La CNIL impose depuis 2020 que refuser doit être aussi simple qu'accepter.",
+        "position": { "x": 35, "y": 79 },
+        "sanctionRef": {
+          "name": "Google + Facebook",
+          "amount": "150 M€ + 60 M€",
+          "date": "janvier 2022",
+          "reason": "absence de bouton de refus aussi accessible que le bouton d'acceptation"
+        },
+        "exposure": {
+          "label": "Mise en demeure publique probable",
+          "range": "20 000 — 50 000 €"
+        }
+      },
+      {
+        "id": "anom-3",
+        "severity": "critical",
+        "title": "Formulaire de contact sans case de consentement",
+        "legalRef": "Article 7 RGPD · Conditions du consentement",
+        "description": "Le formulaire de contact collecte nom, email et numéro de téléphone, mais ne propose aucune case à cocher informant le visiteur du traitement de ses données ni du droit d'accès / rectification.",
+        "position": { "x": 50, "y": 60 },
+        "sanctionRef": {
+          "name": "Cabinet Bouygues Recrutement",
+          "amount": "14 000 €",
+          "date": "2025",
+          "reason": "absence d'information dans le parcours candidat"
+        },
+        "exposure": {
+          "label": "Procédure simplifiée CNIL",
+          "range": "8 000 — 14 000 €"
+        }
+      },
+      {
+        "id": "anom-4",
+        "severity": "moderate",
+        "title": "Politique de confidentialité incomplète",
+        "legalRef": "Article 13 RGPD · Information du visiteur",
+        "description": "La politique de confidentialité mentionne le RGPD mais ne précise ni les durées de conservation, ni les transferts éventuels hors UE, ni le mécanisme d'exercice des droits.",
+        "position": { "x": 50, "y": 30 },
+        "sanctionRef": {
+          "name": "Plusieurs PME e-commerce et RH",
+          "amount": "5 000 — 12 000 €",
+          "date": "2024-2025",
+          "reason": "information incomplète"
+        },
+        "exposure": {
+          "label": "Manquement à l'obligation d'information",
+          "range": "5 000 — 10 000 €"
+        }
+      },
+      {
+        "id": "anom-5",
+        "severity": "moderate",
+        "title": "Bannière cookies non rappelable",
+        "legalRef": "Article 82 · Recommandation CNIL",
+        "description": "La bannière n'est plus accessible une fois fermée. Le visiteur n'a aucun moyen de revenir sur son choix sans vider son cache navigateur.",
+        "position": { "x": 70, "y": 88 },
+        "sanctionRef": {
+          "name": "Sanctions multiples PME",
+          "amount": "4 000 — 8 000 €",
+          "date": "2025",
+          "reason": "absence de mécanisme de retrait du consentement"
+        },
+        "exposure": {
+          "label": "Procédure simplifiée",
+          "range": "4 000 — 8 000 €"
+        }
+      },
+      {
+        "id": "anom-6",
+        "severity": "watch",
+        "title": "Pixel Meta sans mention dans la politique",
+        "legalRef": "Article 13 · Transparence",
+        "description": "Le pixel Meta (Facebook) est actif mais n'est pas mentionné dans la liste des destinataires des données dans la politique de confidentialité. Point de vigilance plutôt que sanction immédiate.",
+        "position": { "x": 92, "y": 8 },
+        "sanctionRef": {
+          "name": "—",
+          "amount": "—",
+          "date": "—",
+          "reason": "Pas de sanction directe sur ce seul motif, mais aggravant lors d'un contrôle"
+        },
+        "exposure": {
+          "label": "Aggravant lors d'un contrôle",
+          "range": "2 000 — 5 000 €"
+        }
+      },
+      {
+        "id": "anom-7",
+        "severity": "watch",
+        "title": "Outil de tri de CV par IA non déclaré",
+        "legalRef": "IA Act · Article 6 · Haut risque",
+        "description": "Le site mentionne l'usage d'IA pour le tri de candidatures. L'IA Act 2026 classe cet usage en 'haut risque'. Une analyse d'impact (AIPD) doit être documentée.",
+        "position": { "x": 85, "y": 47 },
+        "sanctionRef": {
+          "name": "IA Act",
+          "amount": "jusqu'à 35 M€ ou 7% du CA",
+          "date": "2026",
+          "reason": "non-respect des obligations sur les systèmes IA à haut risque"
+        },
+        "exposure": {
+          "label": "Sanction IA Act 2026",
+          "range": "Variable selon CA"
+        }
+      },
+      {
+        "id": "anom-8",
+        "severity": "watch",
+        "title": "Durée de conservation CV non documentée",
+        "legalRef": "Article 5(1)(e) · Limitation conservation",
+        "description": "Aucune mention de la durée de conservation des CV reçus par le formulaire candidature. La CNIL recommande 2 ans maximum après le dernier contact.",
+        "position": { "x": 22, "y": 70 },
+        "sanctionRef": {
+          "name": "Sanctions secteur recrutement",
+          "amount": "5 000 — 12 000 €",
+          "date": "2024-2025",
+          "reason": "conservation excessive"
+        },
+        "exposure": {
+          "label": "Procédure simplifiée",
+          "range": "5 000 — 12 000 €"
+        }
+      },
+      {
+        "id": "anom-9",
+        "severity": "watch",
+        "title": "Mentions légales sans DPO identifié",
+        "legalRef": "Article 37 RGPD · Désignation DPO",
+        "description": "Aucun délégué à la protection des données identifié dans les mentions légales. Pour 85 collaborateurs avec traitement de CV à grande échelle, la désignation d'un DPO est recommandée.",
+        "position": { "x": 12, "y": 24 },
+        "sanctionRef": {
+          "name": "—",
+          "amount": "—",
+          "date": "—",
+          "reason": "Pas de sanction directe mais point de vigilance lors d'un contrôle"
+        },
+        "exposure": {
+          "label": "Recommandation CNIL",
+          "range": "Variable"
+        }
+      }
+    ],
+    "scores": {
+      "global": 47,
+      "breakdown": [
+        { "label": "Site web public", "value": 32, "severity": "low" },
+        { "label": "Documentation interne", "value": 65, "severity": "high" },
+        { "label": "Sécurité organisationnelle", "value": 58, "severity": "mid" },
+        { "label": "Sous-traitance & DPA", "value": 28, "severity": "low" }
+      ],
+      "benchmarks": {
+        "you": 47,
+        "sector": 54,
+        "sectorLabel": "Secteur RH",
+        "national": 61,
+        "target": 85
+      }
+    }
+  },
+  "riskProjection": {
+    "cnil": {
+      "value": "15k — 75k €",
+      "description": "Pénalité moyenne estimée en cas de contrôle, basée sur la jurisprudence récente du secteur Recrutement (NAF 7810Z).",
+      "reference": "Délibération SAN-2025-014"
+    },
+    "insurance": {
+      "value": "+35%/an",
+      "description": "Majoration de prime estimée due aux vulnérabilités critiques non patchées et absence de documentation RGPD à jour.",
+      "reference": "Source : Questionnaires assureurs 2025-2026"
+    },
+    "b2b": {
+      "value": "25%",
+      "description": "Volume d'appels d'offres structurellement inaccessibles sans certification de conformité validée par audit externe.",
+      "reference": "Impact CA direct"
+    },
+    "totalExposure": "> 125 000 €",
+    "auditPrice": "990 €"
+  }
+}
