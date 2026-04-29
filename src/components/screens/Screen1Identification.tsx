@@ -13,7 +13,7 @@ export function Screen1Identification({ prospect }: Screen1Props) {
   const { identity } = prospect;
 
   return (
-    <section className="relative flex min-h-[calc(100vh-64px)] flex-col items-center justify-center px-16 py-10 pb-20">
+    <section className="relative flex min-h-[calc(100vh-64px)] flex-col items-center px-16 py-12">
       {/* Grille décorative en arrière-plan */}
       <div className="pointer-events-none absolute inset-0 grid grid-cols-12 px-16 opacity-[0.06]">
         {Array.from({ length: 12 }).map((_, i) => (

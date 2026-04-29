@@ -185,10 +185,10 @@ function BenchmarkScatter({
   };
 }) {
   const points = [
-    { type: "target", label: "Cible", value: benchmarks.target, top: 12 },
-    { type: "national", label: "National", value: benchmarks.national, top: 50 },
-    { type: "sector", label: benchmarks.sectorLabel, value: benchmarks.sector, top: 60 },
-    { type: "you", label: "Vous", value: benchmarks.you, top: 78 },
+    { type: "target", label: "Cible", value: benchmarks.target, top: 10 },
+    { type: "national", label: "National", value: benchmarks.national, top: 37 },
+    { type: "sector", label: benchmarks.sectorLabel, value: benchmarks.sector, top: 64 },
+    { type: "you", label: "Vous", value: benchmarks.you, top: 88 },
   ];
 
   return (

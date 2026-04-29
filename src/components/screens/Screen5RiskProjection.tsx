@@ -80,7 +80,7 @@ export function Screen5RiskProjection({ prospect }: Screen5Props) {
         </div>
 
         {/* Droite - prix */}
-        <div className="bg-surface-high px-14 py-12 text-right">
+        <div className="bg-surface-high px-8 py-12 text-right">
           <div className="mb-4 text-label-md text-on-surface-variant">
             Audit MSDN Consulting
           </div>
