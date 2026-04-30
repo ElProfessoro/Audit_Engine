@@ -37,27 +37,30 @@
 }
 
 /* ============ BASE ============ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  border-radius: 0;
-}
+/* Must be @layer base so Tailwind utility classes (e.g. rounded-full) can override */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
 
-html, body {
-  background: var(--color-surface);
-  color: var(--color-on-surface);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.5;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  html, body {
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-::selection {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
 }
 
 /* ============ UTILITIES ============ */

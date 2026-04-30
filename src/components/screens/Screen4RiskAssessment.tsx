@@ -166,6 +166,8 @@ function BreakdownRow({
   );
 }
 
+const CHART_H = 160; // max bar height in pixels (= 100%)
+
 function BenchmarkBars({
   benchmarks,
 }: {
@@ -178,36 +180,56 @@ function BenchmarkBars({
   };
 }) {
   const bars = [
-    { label: "Vous", value: benchmarks.you, style: "bg-[#d97706]", textClass: "text-[#d97706] font-bold" },
-    { label: benchmarks.sectorLabel, value: benchmarks.sector, style: "bg-[#4c5f82] opacity-50", textClass: "text-on-surface-variant" },
-    { label: "National", value: benchmarks.national, style: "bg-[#4c5f82] opacity-30", textClass: "text-on-surface-variant" },
-    { label: "Cible", value: benchmarks.target, style: "border-hairline border-primary border-dashed bg-transparent", textClass: "text-primary font-bold" },
+    { key: "vous", label: "Vous", value: benchmarks.you, barClass: "bg-[#d97706]", textClass: "text-[#d97706] font-bold" },
+    { key: "sector", label: benchmarks.sectorLabel, value: benchmarks.sector, barClass: "bg-[#4c5f82]/50", textClass: "text-on-surface-variant" },
+    { key: "national", label: "National", value: benchmarks.national, barClass: "bg-[#4c5f82]/30", textClass: "text-on-surface-variant" },
+    { key: "cible", label: "Cible", value: benchmarks.target, barClass: "border-hairline border-dashed border-primary bg-transparent", textClass: "text-primary font-bold" },
   ];
 
   return (
-    <div className="flex h-[260px] flex-col">
-      <div className="relative flex flex-1 items-end justify-between gap-3 pb-8 border-b-hairline border-line">
-        {/* Dashed grid lines */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(8px+25%)] border-t-hairline border-line-strong border-dashed" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(8px+50%)] border-t-hairline border-line-strong border-dashed" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(8px+75%)] border-t-hairline border-line-strong border-dashed" />
+    <div>
+      {/* Chart area — bars use absolute pixel heights, no % tricks */}
+      <div className="relative border-b-hairline border-line" style={{ height: `${CHART_H + 4}px` }}>
+        {/* Dashed reference lines at 25 / 50 / 75 */}
+        {([0.25, 0.5, 0.75] as const).map((pct) => (
+          <div
+            key={pct}
+            className="pointer-events-none absolute inset-x-0 border-t-hairline border-dashed border-line"
+            style={{ bottom: `${pct * CHART_H}px` }}
+          />
+        ))}
 
-        {bars.map((bar) => (
-          <div key={bar.label} className="group z-10 flex w-full flex-col items-center gap-2">
-            <span className={cn("font-mono text-[11px] opacity-0 transition-opacity group-hover:opacity-100", bar.textClass)}>
-              {bar.value}
-            </span>
+        {bars.map((bar, i) => {
+          const barH = Math.round((bar.value / 100) * CHART_H);
+          return (
             <div
-              className={cn("w-8 transition-all", bar.style)}
-              style={{ height: `${bar.value}%` }}
-            />
-            <span className={cn("font-mono text-[11px] whitespace-nowrap text-center", bar.textClass)}>
-              {bar.label}
-            </span>
+              key={bar.key}
+              className="group absolute flex flex-col items-center"
+              style={{ left: `${i * 25 + 12.5}%`, bottom: 0, transform: "translateX(-50%)" }}
+            >
+              <span className={cn("mb-1 font-mono text-[11px] opacity-0 transition-opacity group-hover:opacity-100", bar.textClass)}>
+                {bar.value}
+              </span>
+              <div className={cn("w-8", bar.barClass)} style={{ height: `${barH}px` }} />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Labels */}
+      <div className="mt-3 grid grid-cols-4">
+        {bars.map((bar) => (
+          <div
+            key={bar.key}
+            className={cn("overflow-hidden text-ellipsis whitespace-nowrap px-1 text-center font-mono text-[11px]", bar.textClass)}
+          >
+            {bar.label}
           </div>
         ))}
       </div>
-      <div className="mt-3 flex justify-between font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
+
+      {/* Scale */}
+      <div className="mt-3 flex justify-between border-t-hairline border-line pt-3 font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
         <span>0</span>
         <span>50</span>
         <span>100</span>
