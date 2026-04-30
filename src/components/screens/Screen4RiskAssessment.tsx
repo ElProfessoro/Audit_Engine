@@ -14,14 +14,12 @@ interface Screen4Props {
  * TODO Claude Code :
  * - Animer le stroke-dashoffset de la jauge au mount (de 540 vers la valeur cible, 1s ease)
  * - Animer la largeur des barres breakdown en cascade (100ms entre chaque)
- * - Animer l'apparition des points scatter en fade-in
  */
 export function Screen4RiskAssessment({ prospect }: Screen4Props) {
   const { scores } = prospect.scan;
   const { global, breakdown, benchmarks } = scores;
 
-  // Calcul du stroke-dashoffset pour la jauge
-  // Circumference d'un cercle r=86 ≈ 540
+  // Circumference for r=86 ≈ 540
   const circumference = 540;
   const offset = circumference - (global / 100) * circumference;
 
@@ -56,7 +54,7 @@ export function Screen4RiskAssessment({ prospect }: Screen4Props) {
                   cy="100"
                   r="86"
                   fill="none"
-                  stroke="#b02d1d"
+                  stroke="#d97706"
                   strokeWidth="14"
                   strokeDasharray={circumference}
                   strokeDashoffset={offset}
@@ -64,7 +62,7 @@ export function Screen4RiskAssessment({ prospect }: Screen4Props) {
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="font-serif text-[64px] font-extrabold leading-none tracking-[-0.04em] text-secondary">
+                <div className="font-serif text-[64px] font-extrabold leading-none tracking-[-0.04em] text-[#d97706]">
                   {global}
                 </div>
                 <div className="my-1.5 h-[0.5px] w-6 bg-line-strong" />
@@ -73,7 +71,7 @@ export function Screen4RiskAssessment({ prospect }: Screen4Props) {
                 </div>
               </div>
             </div>
-            <div className="mt-6 inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-label-sm text-white">
+            <div className="mt-6 inline-flex items-center gap-2 border-hairline border-[#ba1a1a]/30 bg-[#ffdad6]/30 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-[#ba1a1a]">
               <AlertTriangle className="size-3.5 stroke-[1.5]" />
               Risque élevé
             </div>
@@ -102,12 +100,7 @@ export function Screen4RiskAssessment({ prospect }: Screen4Props) {
           <div className="mb-8 text-label-md text-on-surface-variant">
             Benchmark sectoriel
           </div>
-          <BenchmarkScatter benchmarks={benchmarks} />
-          <div className="mt-3 flex justify-between border-t-hairline border-line pt-4 font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
-            <span>0</span>
-            <span>50</span>
-            <span>100</span>
-          </div>
+          <BenchmarkBars benchmarks={benchmarks} />
         </div>
       </div>
 
@@ -173,7 +166,7 @@ function BreakdownRow({
   );
 }
 
-function BenchmarkScatter({
+function BenchmarkBars({
   benchmarks,
 }: {
   benchmarks: {
@@ -184,75 +177,40 @@ function BenchmarkScatter({
     target: number;
   };
 }) {
-  const points = [
-    { type: "target", label: "Cible", value: benchmarks.target, top: 10 },
-    { type: "national", label: "National", value: benchmarks.national, top: 37 },
-    { type: "sector", label: benchmarks.sectorLabel, value: benchmarks.sector, top: 64 },
-    { type: "you", label: "Vous", value: benchmarks.you, top: 88 },
+  const bars = [
+    { label: "Vous", value: benchmarks.you, style: "bg-[#d97706]", textClass: "text-[#d97706] font-bold" },
+    { label: benchmarks.sectorLabel, value: benchmarks.sector, style: "bg-[#4c5f82] opacity-50", textClass: "text-on-surface-variant" },
+    { label: "National", value: benchmarks.national, style: "bg-[#4c5f82] opacity-30", textClass: "text-on-surface-variant" },
+    { label: "Cible", value: benchmarks.target, style: "border-hairline border-primary border-dashed bg-transparent", textClass: "text-primary font-bold" },
   ];
 
   return (
-    <div className="relative h-[260px]">
-      {/* Axes horizontaux */}
-      <div className="absolute inset-x-0 top-[30%] h-[0.5px] bg-line" />
-      <div className="absolute inset-x-0 top-[60%] h-[0.5px] bg-line" />
-      <div className="absolute inset-x-0 top-[90%] h-[0.5px] bg-line" />
+    <div className="flex h-[260px] flex-col">
+      <div className="relative flex flex-1 items-end justify-between gap-3 pb-8 border-b-hairline border-line">
+        {/* Dashed grid lines */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(8px+25%)] border-t-hairline border-line-strong border-dashed" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(8px+50%)] border-t-hairline border-line-strong border-dashed" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(8px+75%)] border-t-hairline border-line-strong border-dashed" />
 
-      {points.map((p) => (
-        <BenchmarkPoint key={p.type} {...p} />
-      ))}
-    </div>
-  );
-}
-
-function BenchmarkPoint({
-  type,
-  label,
-  value,
-  top,
-}: {
-  type: string;
-  label: string;
-  value: number;
-  top: number;
-}) {
-  const dotClass =
-    type === "you"
-      ? "bg-secondary size-[18px]"
-      : type === "sector"
-        ? "bg-warning size-[14px]"
-        : type === "national"
-          ? "bg-on-surface-variant size-[14px]"
-          : "bg-success size-[14px]";
-
-  const labelClass =
-    type === "you"
-      ? "text-secondary"
-      : type === "target"
-        ? "text-success"
-        : "text-on-surface-variant";
-
-  return (
-    <div
-      className="absolute -translate-x-1/2 -translate-y-1/2 text-center"
-      style={{ top: `${top}%`, left: `${value}%` }}
-    >
-      <div
-        className={cn(
-          "mb-1 text-[10px] font-bold uppercase tracking-[0.14em] whitespace-nowrap",
-          labelClass,
-        )}
-      >
-        {label}
+        {bars.map((bar) => (
+          <div key={bar.label} className="group z-10 flex w-full flex-col items-center gap-2">
+            <span className={cn("font-mono text-[11px] opacity-0 transition-opacity group-hover:opacity-100", bar.textClass)}>
+              {bar.value}
+            </span>
+            <div
+              className={cn("w-8 transition-all", bar.style)}
+              style={{ height: `${bar.value}%` }}
+            />
+            <span className={cn("font-mono text-[11px] whitespace-nowrap text-center", bar.textClass)}>
+              {bar.label}
+            </span>
+          </div>
+        ))}
       </div>
-      <div
-        className={cn(
-          "mx-auto mb-2 rounded-full border-2 border-surface ring-[0.5px] ring-line-strong",
-          dotClass,
-        )}
-      />
-      <div className="font-mono text-[11.5px] font-semibold text-on-surface">
-        {value} / 100
+      <div className="mt-3 flex justify-between font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
+        <span>0</span>
+        <span>50</span>
+        <span>100</span>
       </div>
     </div>
   );

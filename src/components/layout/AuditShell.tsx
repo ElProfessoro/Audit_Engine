@@ -53,17 +53,19 @@ export function AuditShell({ prospect }: AuditShellProps) {
     return () => window.removeEventListener("keydown", handler);
   }, [setScreen, nextScreen, prevScreen, toggleFullscreen, toggleShortcuts]);
 
+  const isCover = currentScreen === 1;
+
   return (
     <div
       className={cn(
         "grid min-h-screen",
-        fullscreen ? "grid-cols-[0_1fr]" : "grid-cols-[240px_1fr]",
+        fullscreen || isCover ? "grid-cols-[1fr]" : "grid-cols-[240px_1fr]",
       )}
     >
-      {!fullscreen && <Sidebar />}
+      {!fullscreen && !isCover && <Sidebar />}
 
       <main className="flex min-h-screen flex-col bg-surface-low">
-        {!fullscreen && <Topbar />}
+        {!fullscreen && !isCover && <Topbar />}
 
         <div className="flex-1">
           {currentScreen === 1 && <Screen1Identification prospect={prospect} />}
